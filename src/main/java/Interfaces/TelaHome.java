@@ -7,6 +7,7 @@ package Interfaces;
 import Classes.Prato;
 import DAO.PratoDAO;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,21 +31,29 @@ public class TelaHome extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-        public void fillTables(){
-        DefaultTableModel modelo = (DefaultTableModel) tbDishes.getModel();
+    
+    public void fillTables(){
+        DefaultTableModel modelo = new DefaultTableModel(
+            new Object[]{"ID", "Name", "Chef"}, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Desativa a edição para todas as células
+                }
+        };
+
+        tbDishes.setModel(modelo);
+        tbDishes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         modelo.setNumRows(0);
         PratoDAO pdao = new PratoDAO();
-        
-        for (Prato p: pdao.lerBanco()) {
-            
+
+        for (Prato p : pdao.lerBanco()) {
             modelo.addRow(new Object[]{
                 p.getId(),
                 p.getName(),
                 p.getChef()
             });
-            
         }
-        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -175,9 +184,6 @@ public class TelaHome extends javax.swing.JFrame {
             TelaEdit frameEdit = new TelaEdit(TelaHome.this, prato);
             frameEdit.setVisible(true);
             setVisible(false);
-            //tbDishes.setValueAt(txtID.getText(), tbDishes.getSelectedRow(), 0);
-            //tbDishes.setValueAt(txtName.getText(), tbDishes.getSelectedRow(), 1);
-            //tbDishes.setValueAt(txtChef.getText(), tbDishes.getSelectedRow(), 2);
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecione um campo");
         }
@@ -185,6 +191,16 @@ public class TelaHome extends javax.swing.JFrame {
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         // TODO add your handling code here:
+        PratoDAO pdao = new PratoDAO();
+        int id = Integer.parseInt(tbDishes.getValueAt(tbDishes.getSelectedRow(), 0).toString());
+        String chef = tbDishes.getValueAt(tbDishes.getSelectedRow(), 2).toString();
+        
+        Prato p = new Prato(id, chef);
+      
+        pdao.deletarNoBanco(p);
+        
+        fillTables();
+        
     }//GEN-LAST:event_btDeleteActionPerformed
 
     /**

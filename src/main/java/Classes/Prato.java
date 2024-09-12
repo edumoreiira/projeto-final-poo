@@ -21,6 +21,11 @@ public class Prato {
         this.chef = chef;
         this.name = name;
     }
+    
+    public Prato(int id, String chef) {
+        this.chef = chef;
+        this.id = id;
+    }
 
     public Prato(int id, String name, String chef) {
         this.id = id;
