@@ -6,6 +6,7 @@ package Interfaces;
 
 import Classes.Prato;
 import DAO.PratoDAO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -168,6 +169,8 @@ public class TelaHome extends javax.swing.JFrame {
     private void btNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewActionPerformed
         // TODO add your handling code here:
         TelaNew frameNew = new TelaNew(TelaHome.this);
+        frameNew.setLocationRelativeTo(null);
+        frameNew.setTitle("Novo Prato");
         frameNew.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btNewActionPerformed
@@ -182,6 +185,9 @@ public class TelaHome extends javax.swing.JFrame {
             );
             
             TelaEdit frameEdit = new TelaEdit(TelaHome.this, prato);
+            frameEdit.setLocationRelativeTo(null); // Centralizar na tela
+            frameEdit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frameEdit.setTitle("Editar prato");
             frameEdit.setVisible(true);
             setVisible(false);
         } else {
@@ -236,7 +242,11 @@ public class TelaHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaHome().setVisible(true);
+                TelaHome tela = new TelaHome();
+                tela.setTitle("Gerenciador de Pratos");
+                tela.setVisible(true);
+                tela.setLocationRelativeTo(null);
+                        
             }
         });
     }
