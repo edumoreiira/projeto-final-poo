@@ -47,10 +47,11 @@ public class PratoDAO {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("INSERT INTO Prato (ID, nome, chef) VALUES (?, ?, ?)");
-            stmt.setInt(1, p.getId());
-            stmt.setString(2, p.getName());
-            stmt.setString(3, p.getChef());
+//            stmt = con.prepareStatement("INSERT INTO Prato (ID, nome, chef) VALUES (?, ?, ?)");
+            stmt = con.prepareStatement("INSERT INTO Prato (nome, chef) VALUES ( ?, ?)");
+//            stmt.setInt(1, p.getId());
+            stmt.setString(1, p.getName());
+            stmt.setString(2, p.getChef());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {

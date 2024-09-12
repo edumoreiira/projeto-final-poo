@@ -4,6 +4,10 @@
  */
 package Interfaces;
 
+import Classes.Prato;
+import DAO.PratoDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lisil
@@ -40,7 +44,7 @@ public class TelaNew extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btSave = new javax.swing.JButton();
+        btCreate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +87,10 @@ public class TelaNew extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Chef:");
 
-        btSave.setText("Salvar");
-        btSave.addActionListener(new java.awt.event.ActionListener() {
+        btCreate.setText("Criar");
+        btCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveActionPerformed(evt);
+                btCreateActionPerformed(evt);
             }
         });
 
@@ -96,7 +100,7 @@ public class TelaNew extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btSave)
+                .addComponent(btCreate)
                 .addGap(94, 94, 94))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +145,7 @@ public class TelaNew extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
                 .addGap(33, 33, 33)
-                .addComponent(btSave)
+                .addComponent(btCreate)
                 .addGap(32, 32, 32))
         );
 
@@ -181,9 +185,22 @@ public class TelaNew extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btBacktoMainActionPerformed
 
-    private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
+    private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btSaveActionPerformed
+        PratoDAO pdao = new PratoDAO();
+        Prato p = new Prato(
+        txtName.getText(),
+        txtChef.getText()
+        );
+        
+        if (p.getName().isEmpty() || p.getChef().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+        pdao.inserirBanco(p);
+        this.home.fillTables();
+        JOptionPane.showMessageDialog(null, "Prato " + p.getName() + " Criado com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +240,7 @@ public class TelaNew extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBacktoMain;
-    private javax.swing.JButton btSave;
+    private javax.swing.JButton btCreate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -220,6 +220,9 @@ public class TelaEdit extends javax.swing.JFrame {
         
         pdao.atualizarBanco(p);
         home.fillTables();
+        
+        this.home.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
