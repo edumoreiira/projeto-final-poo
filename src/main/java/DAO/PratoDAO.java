@@ -32,7 +32,7 @@ public class PratoDAO {
                 Prato prato = new Prato();
                 prato.setId(rs.getInt("id"));
                 prato.setName(rs.getString("nome"));
-                prato.setName(rs.getString("chef"));              
+                prato.setChef(rs.getString("chef"));              
                 pratos.add(prato);
             }
         } catch (SQLException ex) {
@@ -64,18 +64,20 @@ public class PratoDAO {
     public void atualizarBanco(Prato p) {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
+        
         try {
-            stmt = con.prepareStatement("UPDATE Contato SET  nome = ?, chef = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE Prato SET  nome = ?, chef = ? WHERE id = ?");
 
             stmt.setString(1, p.getName());
             stmt.setString(2, p.getChef());
             stmt.setInt(3, p.getId());
             stmt.executeUpdate();
-
+           
         } catch (SQLException ex) {
             System.out.println("Erro ao atualizar na tabela Contato");
         } finally {
             DBConnection.closeConnection(con, stmt);
+            
         }
         
      
@@ -86,7 +88,7 @@ public class PratoDAO {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement(" DELETE FROM Contato WHERE id = ? AND chef = ?");
+            stmt = con.prepareStatement(" DELETE FROM Prato WHERE id = ? AND chef = ?");
             stmt.setInt(1, p.getId());
             stmt.setString(2, p.getChef());
             stmt.executeUpdate();

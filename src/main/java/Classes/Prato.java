@@ -10,14 +10,14 @@ package Classes;
  */
 public class Prato {
     private int id;
-    private String chef;
     private String name;
+    private String chef;
     
     public Prato(){
     
     }
 
-    public Prato(int id, String chef, String name) {
+    public Prato(int id, String name, String chef) {
         this.id = id;
         this.chef = chef;
         this.name = name;

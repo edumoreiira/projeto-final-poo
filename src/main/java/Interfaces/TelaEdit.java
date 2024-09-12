@@ -4,6 +4,9 @@
  */
 package Interfaces;
 
+import Classes.Prato;
+import DAO.PratoDAO;
+
 /**
  *
  * @author lisil
@@ -22,6 +25,15 @@ public class TelaEdit extends javax.swing.JFrame {
     public TelaEdit(TelaHome home) {
         this.home = home;
         initComponents();
+    }
+
+    public TelaEdit(TelaHome home, Prato p) {
+        this.home = home;
+        initComponents();
+        txtID.setText(Integer.toString(p.getId()));
+        txtID.setEditable(false);
+        txtName.setText(p.getName());
+        txtChef.setText(p.getChef());
     }
 
     /**
@@ -199,6 +211,15 @@ public class TelaEdit extends javax.swing.JFrame {
 
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
         // TODO add your handling code here:
+        PratoDAO pdao = new PratoDAO();
+        Prato p = new Prato(
+            Integer.parseInt(txtID.getText()),
+            txtName.getText(),
+            txtChef.getText()
+        );
+        
+        pdao.atualizarBanco(p);
+        home.fillTables();
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
