@@ -65,6 +65,7 @@ public class TelaHome extends javax.swing.JFrame {
         btEdit = new javax.swing.JButton();
         btDelete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +126,7 @@ public class TelaHome extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNew)
                     .addComponent(btEdit)
@@ -137,15 +138,23 @@ public class TelaHome extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fried-rice_4486443.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 184, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,8 +162,8 @@ public class TelaHome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -172,7 +181,7 @@ public class TelaHome extends javax.swing.JFrame {
         frameNew.setLocationRelativeTo(null);
         frameNew.setTitle("Novo Prato");
         frameNew.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btNewActionPerformed
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
@@ -181,15 +190,14 @@ public class TelaHome extends javax.swing.JFrame {
             Prato prato = new Prato(
                 Integer.parseInt(tbDishes.getValueAt(tbDishes.getSelectedRow(), 0).toString()),
                 tbDishes.getValueAt(tbDishes.getSelectedRow(), 1).toString(),
-                tbDishes.getValueAt(tbDishes.getSelectedRow(), 2).toString()
-            );
+                tbDishes.getValueAt(tbDishes.getSelectedRow(), 2).toString());
             
             TelaEdit frameEdit = new TelaEdit(TelaHome.this, prato);
             frameEdit.setLocationRelativeTo(null); // Centralizar na tela
             frameEdit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frameEdit.setTitle("Editar prato");
             frameEdit.setVisible(true);
-            setVisible(false);
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecione um campo");
         }
@@ -207,6 +215,7 @@ public class TelaHome extends javax.swing.JFrame {
         
         fillTables();
         
+        JOptionPane.showMessageDialog(null, "Prato excluído com sucesso");
     }//GEN-LAST:event_btDeleteActionPerformed
 
     /**
@@ -255,6 +264,7 @@ public class TelaHome extends javax.swing.JFrame {
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btNew;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
