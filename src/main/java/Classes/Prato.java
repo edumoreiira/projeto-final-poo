@@ -8,18 +8,17 @@ package Classes;
  *
  * @author eduu_
  */
-public class Prato {
+public class Prato extends PratoAbstrata {
     private int id;
-    private String name;
     private String chef;
     
+    //sobrecargas
     public Prato(){
-    
     }
     
     public Prato(String name, String chef) {
         this.chef = chef;
-        this.name = name;
+        setName(name);
     }
     
     public Prato(int id, String chef) {
@@ -30,7 +29,7 @@ public class Prato {
     public Prato(int id, String name, String chef) {
         this.id = id;
         this.chef = chef;
-        this.name = name;
+        setName(name);
     }
 
     public int getId() {
@@ -48,18 +47,11 @@ public class Prato {
     public void setChef(String chef) {
         this.chef = chef;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
+    //sobrescrita
     @Override
     public String toString() {
-        return "Prato{" + "id=" + id + ", chef=" + chef + ", name=" + name + '}';
+        return "Prato{" + "id=" + id + ", chef=" + chef + ", name=" + getName() + '}';
     }
     
     

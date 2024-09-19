@@ -16,7 +16,8 @@ import java.util.ArrayList;
  *
  * @author eduu_
  */
-public class PratoDAO {
+public class PratoDAO implements InterfacePratoDAO {
+    @Override
     public ArrayList<Prato> lerBanco() {
 
         Connection con = DBConnection.getConnection();
@@ -43,6 +44,7 @@ public class PratoDAO {
         return pratos;
     }
 
+    @Override
     public void inserirBanco(Prato p) {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
@@ -62,6 +64,7 @@ public class PratoDAO {
 
     }
 
+    @Override
     public void atualizarBanco(Prato p) {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
@@ -85,6 +88,7 @@ public class PratoDAO {
 
     
 }
+    @Override
     public void deletarNoBanco(Prato p) {
         Connection con = DBConnection.getConnection();
         PreparedStatement stmt = null;
